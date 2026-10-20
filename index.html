@@ -15,7 +15,7 @@
           <span class="brand-mark">N</span>
           <span>NEXORA <b>GARANT</b></span>
         </a>
-        <span class="demo-pill"><i></i> ДЕМО</span>
+        <span class="demo-pill" id="connection-status"><i></i> ПОДКЛЮЧЕНИЕ</span>
       </header>
 
       <main id="main-content" tabindex="-1">
@@ -41,27 +41,27 @@
               <span class="eyebrow">ОБЗОР</span>
               <h2>Панель управления</h2>
             </div>
-            <span class="updated-label"><span class="live-dot"></span> Демо-данные</span>
+            <span class="updated-label"><span class="live-dot"></span> Мои данные</span>
           </div>
 
           <div class="stats-grid">
             <article class="metric-card">
               <span class="metric-icon red-icon">⇄</span>
               <span class="metric-label">Мой баланс</span>
-              <strong>0,00 <small>₽</small></strong>
-              <span class="metric-foot">Тестовое значение</span>
+              <strong id="home-balance">—</strong>
+              <span class="metric-foot">Текущий баланс</span>
             </article>
             <article class="metric-card">
               <span class="metric-icon gold-icon">◇</span>
               <span class="metric-label">Завершено сделок</span>
-              <strong>0</strong>
-              <span class="metric-foot">Тестовое значение</span>
+              <strong id="home-completed">—</strong>
+              <span class="metric-foot">Успешных сделок</span>
             </article>
             <article class="metric-card">
               <span class="metric-icon green-icon">↗</span>
               <span class="metric-label">Приглашено друзей</span>
-              <strong>0</strong>
-              <span class="metric-foot">Тестовое значение</span>
+              <strong id="home-referrals">—</strong>
+              <span class="metric-foot">Приглашено друзей</span>
             </article>
           </div>
 
@@ -94,12 +94,20 @@
           <div class="page-heading">
             <span class="eyebrow">NEXORA · СДЕЛКИ</span>
             <h1>Мои сделки</h1>
-            <p>Здесь будут отображаться реальные сделки после подключения защищённого сервера.</p>
+            <p>Создавайте сделки и следите за их статусом в одном месте.</p>
           </div>
-          <div class="empty-state">
+          <div class="deal-toolbar">
+            <button class="button button-primary" data-action="new-deal">＋ Создать сделку</button>
+            <button class="button button-secondary" data-action="refresh">Обновить</button>
+          </div>
+          <div class="notice connect-notice" id="connect-notice">
+            <span>ⓘ</span><p>Подключаем защищённый сервер…</p>
+          </div>
+          <div class="deal-list" id="deal-list" aria-live="polite"></div>
+          <div class="empty-state" id="deals-empty" hidden>
             <span class="empty-icon">⇄</span>
             <h2>Пока нет сделок</h2>
-            <p>Создай сделку в боте. История в Mini App появится после подключения backend.</p>
+            <p>Создайте первую сделку или присоединитесь к сделке по ссылке в боте.</p>
             <button class="button button-secondary" data-action="new-deal">＋ Создать сделку</button>
           </div>
         </section>
@@ -108,18 +116,32 @@
           <div class="page-heading">
             <span class="eyebrow">NEXORA · ФИНАНСЫ</span>
             <h1>Баланс</h1>
-            <p>Демо-экран. Реальный баланс пока не загружается.</p>
+            <p>Данные профиля и выплаты из вашего аккаунта.</p>
           </div>
           <article class="balance-card">
             <span class="balance-label">ДОСТУПНЫЙ БАЛАНС</span>
-            <strong>0,00 <small>₽</small></strong>
-            <span class="balance-note">Тестовое значение · не является реальными средствами</span>
+            <strong id="balance-value">—</strong>
+            <span class="balance-note">Минимум для оформления вывода — 600 ₽ и 3 завершённые сделки. Выплаты оформляются через поддержку.</span>
           </article>
           <div class="info-card">
             <span class="eyebrow">РЕКВИЗИТЫ</span>
-            <h2>Получение выплат</h2>
-            <p>Реквизиты управляются в Telegram-боте. В Mini App они появятся только после безопасного подключения backend.</p>
-            <button class="button button-secondary" data-action="bot">Вернуться в бот</button>
+            <h2>Мои реквизиты</h2>
+            <form id="requisites-form" class="stack-form">
+              <label>TON-кошелёк
+                <input name="ton_wallet" type="text" autocomplete="off" maxlength="100" placeholder="Адрес TON">
+              </label>
+              <button class="button button-secondary" type="submit" data-requisite="ton_wallet">Сохранить TON</button>
+              <label>Карта / телефон
+                <input name="card_number" type="text" autocomplete="off" maxlength="80" placeholder="Номер карты или телефона">
+              </label>
+              <button class="button button-secondary" type="submit" data-requisite="card_number">Сохранить карту / телефон</button>
+            </form>
+          </div>
+          <div class="info-card">
+            <span class="eyebrow">ВЫВОД СРЕДСТВ</span>
+            <h2>Нужна выплата?</h2>
+            <p id="withdraw-requirements">Проверяем условия аккаунта…</p>
+            <button class="button button-secondary" data-action="contact-manager">Связаться с поддержкой</button>
           </div>
         </section>
 
@@ -127,31 +149,57 @@
           <div class="page-heading">
             <span class="eyebrow">NEXORA · АНАЛИТИКА</span>
             <h1>Статистика</h1>
-            <p>Демо-экран. Все значения ниже условные.</p>
+            <p>Реальные показатели по вашему аккаунту.</p>
           </div>
           <div class="stats-grid stats-grid-single">
             <article class="metric-card">
               <span class="metric-icon red-icon">⇄</span>
               <span class="metric-label">Всего сделок</span>
-              <strong>0</strong>
-              <span class="metric-foot">Демо</span>
+              <strong id="stats-total">—</strong>
+              <span class="metric-foot">Ваши сделки</span>
             </article>
             <article class="metric-card">
               <span class="metric-icon green-icon">✓</span>
               <span class="metric-label">Завершено</span>
-              <strong>0</strong>
-              <span class="metric-foot">Демо</span>
+              <strong id="stats-completed">—</strong>
+              <span class="metric-foot">Успешные сделки</span>
             </article>
             <article class="metric-card">
               <span class="metric-icon gold-icon">₽</span>
               <span class="metric-label">Оборот</span>
-              <strong>0,00 <small>₽</small></strong>
-              <span class="metric-foot">Демо</span>
+              <strong id="stats-turnover">—</strong>
+              <span class="metric-foot">Завершённый оборот</span>
             </article>
           </div>
           <div class="notice">
             <span>ⓘ</span>
-            <p>Показатели станут реальными, когда Mini App будет подключён к боту через проверку Telegram initData на сервере.</p>
+            <p>Статистика обновляется из базы бота. Приглашено друзей: <b id="stats-referrals">—</b>. Ниже доступна ваша персональная ссылка.</p>
+          </div>
+          <div class="info-card">
+            <span class="eyebrow">ПРИГЛАШЕНИЯ</span>
+            <h2>Ваша реферальная ссылка</h2>
+            <p>Поделитесь ссылкой, чтобы пригласить друга в Nexora Garant.</p>
+            <input id="referral-link" type="text" readonly placeholder="Загрузка ссылки…">
+            <button class="button button-secondary" data-action="copy-referral">Скопировать ссылку</button>
+          </div>
+        </section>
+
+        <section class="page" data-view="support">
+          <div class="page-heading">
+            <span class="eyebrow">NEXORA · ПОМОЩЬ</span>
+            <h1>Поддержка</h1>
+            <p>Опишите вопрос — обращение будет сохранено и отправлено администрации.</p>
+          </div>
+          <form id="ticket-form" class="info-card stack-form">
+            <label for="ticket-message">Ваше обращение</label>
+            <textarea id="ticket-message" name="message" maxlength="3000" rows="6" required placeholder="Опишите вопрос или укажите ID сделки"></textarea>
+            <button class="button button-primary" type="submit">Отправить обращение</button>
+          </form>
+          <div class="info-card">
+            <span class="eyebrow">СВЯЗЬ</span>
+            <h2>Менеджер</h2>
+            <p>Для оформления выплаты или срочного вопроса обратитесь к менеджеру.</p>
+            <button class="button button-secondary" data-action="contact-manager">Открыть Telegram</button>
           </div>
         </section>
       </main>
@@ -161,9 +209,51 @@
         <button class="nav-item" data-page="deals"><span>⇄</span><small>Сделки</small></button>
         <button class="nav-item" data-page="balance"><span>₽</span><small>Баланс</small></button>
         <button class="nav-item" data-page="stats"><span>▥</span><small>Статистика</small></button>
+        <button class="nav-item" data-page="support"><span>♡</span><small>Помощь</small></button>
       </nav>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog class="app-dialog" id="deal-dialog">
+      <form id="deal-form" class="dialog-form">
+        <div class="dialog-heading">
+          <div><span class="eyebrow">NEXORA · НОВАЯ СДЕЛКА</span><h2>Создать сделку</h2></div>
+          <button class="dialog-close" type="button" data-action="close-dialog" aria-label="Закрыть">×</button>
+        </div>
+        <label>Ваша роль
+          <select name="role" required>
+            <option value="Продавец">Продавец</option>
+            <option value="Покупатель">Покупатель</option>
+          </select>
+        </label>
+        <label>Сумма в рублях
+          <input name="amount" type="text" inputmode="decimal" maxlength="40" required placeholder="Например, 1500 ₽">
+        </label>
+        <label class="nft-field">Что продаёте?
+          <input name="nft_description" type="text" maxlength="300" placeholder="Например, 5 Пепе">
+        </label>
+        <label>Способ оплаты
+          <select name="payment_method" required>
+            <option value="TON-кошелек">TON-кошелёк</option>
+            <option value="Карта / СБП">Карта / СБП</option>
+            <option value="Звёзды">Telegram Stars</option>
+          </select>
+        </label>
+        <p class="form-note">Для продавца по оплате TON или картой заранее добавьте соответствующие реквизиты. Оплата в Stars отображается с конвертацией по курсу бота.</p>
+        <button class="button button-primary" type="submit">Создать и получить ссылку</button>
+      </form>
+    </dialog>
+    <dialog class="app-dialog" id="deal-result-dialog">
+      <div class="dialog-form">
+        <div class="dialog-heading">
+          <div><span class="eyebrow">СДЕЛКА СОЗДАНА</span><h2>Пригласите участника</h2></div>
+          <button class="dialog-close" type="button" data-action="close-dialog" aria-label="Закрыть">×</button>
+        </div>
+        <p>Отправьте ссылку контрагенту, чтобы он смог присоединиться к сделке.</p>
+        <input id="deal-invite-link" type="text" readonly>
+        <button class="button button-primary" data-action="copy-invite">Скопировать ссылку</button>
+      </div>
+    </dialog>
+    <script src="config.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
