@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#100608">
+    <title>Nexora Garant</title>
+    <link rel="stylesheet" href="app.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Nexora Garant, главная" data-page="home">
+          <span class="brand-mark">N</span>
+          <span>NEXORA <b>GARANT</b></span>
+        </a>
+        <span class="demo-pill"><i></i> ДЕМО</span>
+      </header>
+
+      <main id="main-content" tabindex="-1">
+        <section class="page active" data-view="home">
+          <div class="hero-card">
+            <div class="hero-glow"></div>
+            <div class="hero-copy">
+              <span class="eyebrow"><span class="pulse"></span> СДЕЛКИ ПОД КОНТРОЛЕМ</span>
+              <h1>Покупай и продавай<br><em>спокойно.</em></h1>
+              <p>Управляй сделками, балансом и реквизитами в одном месте.</p>
+              <button class="button button-primary" data-action="new-deal">
+                <span>＋</span> Создать сделку
+              </button>
+            </div>
+            <div class="hero-orbit orbit-one"></div>
+            <div class="hero-orbit orbit-two"></div>
+            <div class="hero-gem">◇</div>
+            <span class="hero-caption">NEXORA · SECURE EXCHANGE</span>
+          </div>
+
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">ОБЗОР</span>
+              <h2>Панель управления</h2>
+            </div>
+            <span class="updated-label"><span class="live-dot"></span> Демо-данные</span>
+          </div>
+
+          <div class="stats-grid">
+            <article class="metric-card">
+              <span class="metric-icon red-icon">⇄</span>
+              <span class="metric-label">Мой баланс</span>
+              <strong>0,00 <small>₽</small></strong>
+              <span class="metric-foot">Тестовое значение</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-icon gold-icon">◇</span>
+              <span class="metric-label">Завершено сделок</span>
+              <strong>0</strong>
+              <span class="metric-foot">Тестовое значение</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-icon green-icon">↗</span>
+              <span class="metric-label">Приглашено друзей</span>
+              <strong>0</strong>
+              <span class="metric-foot">Тестовое значение</span>
+            </article>
+          </div>
+
+          <div class="section-heading compact-heading">
+            <div>
+              <span class="eyebrow">БЫСТРЫЙ ДОСТУП</span>
+              <h2>Разделы</h2>
+            </div>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-card" data-page="deals">
+              <span class="quick-icon red-icon">⇄</span>
+              <span><b>Мои сделки</b><small>Статусы и история</small></span>
+              <span class="chevron">›</span>
+            </button>
+            <button class="quick-card" data-page="balance">
+              <span class="quick-icon gold-icon">₽</span>
+              <span><b>Баланс</b><small>Средства и реквизиты</small></span>
+              <span class="chevron">›</span>
+            </button>
+            <button class="quick-card" data-page="stats">
+              <span class="quick-icon green-icon">▥</span>
+              <span><b>Статистика</b><small>Показатели аккаунта</small></span>
+              <span class="chevron">›</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="page" data-view="deals">
+          <div class="page-heading">
+            <span class="eyebrow">NEXORA · СДЕЛКИ</span>
+            <h1>Мои сделки</h1>
+            <p>Здесь будут отображаться реальные сделки после подключения защищённого сервера.</p>
+          </div>
+          <div class="empty-state">
+            <span class="empty-icon">⇄</span>
+            <h2>Пока нет сделок</h2>
+            <p>Создай сделку в боте. История в Mini App появится после подключения backend.</p>
+            <button class="button button-secondary" data-action="new-deal">＋ Создать сделку</button>
+          </div>
+        </section>
+
+        <section class="page" data-view="balance">
+          <div class="page-heading">
+            <span class="eyebrow">NEXORA · ФИНАНСЫ</span>
+            <h1>Баланс</h1>
+            <p>Демо-экран. Реальный баланс пока не загружается.</p>
+          </div>
+          <article class="balance-card">
+            <span class="balance-label">ДОСТУПНЫЙ БАЛАНС</span>
+            <strong>0,00 <small>₽</small></strong>
+            <span class="balance-note">Тестовое значение · не является реальными средствами</span>
+          </article>
+          <div class="info-card">
+            <span class="eyebrow">РЕКВИЗИТЫ</span>
+            <h2>Получение выплат</h2>
+            <p>Реквизиты управляются в Telegram-боте. В Mini App они появятся только после безопасного подключения backend.</p>
+            <button class="button button-secondary" data-action="bot">Вернуться в бот</button>
+          </div>
+        </section>
+
+        <section class="page" data-view="stats">
+          <div class="page-heading">
+            <span class="eyebrow">NEXORA · АНАЛИТИКА</span>
+            <h1>Статистика</h1>
+            <p>Демо-экран. Все значения ниже условные.</p>
+          </div>
+          <div class="stats-grid stats-grid-single">
+            <article class="metric-card">
+              <span class="metric-icon red-icon">⇄</span>
+              <span class="metric-label">Всего сделок</span>
+              <strong>0</strong>
+              <span class="metric-foot">Демо</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-icon green-icon">✓</span>
+              <span class="metric-label">Завершено</span>
+              <strong>0</strong>
+              <span class="metric-foot">Демо</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-icon gold-icon">₽</span>
+              <span class="metric-label">Оборот</span>
+              <strong>0,00 <small>₽</small></strong>
+              <span class="metric-foot">Демо</span>
+            </article>
+          </div>
+          <div class="notice">
+            <span>ⓘ</span>
+            <p>Показатели станут реальными, когда Mini App будет подключён к боту через проверку Telegram initData на сервере.</p>
+          </div>
+        </section>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Основная навигация">
+        <button class="nav-item active" data-page="home"><span>⌂</span><small>Главная</small></button>
+        <button class="nav-item" data-page="deals"><span>⇄</span><small>Сделки</small></button>
+        <button class="nav-item" data-page="balance"><span>₽</span><small>Баланс</small></button>
+        <button class="nav-item" data-page="stats"><span>▥</span><small>Статистика</small></button>
+      </nav>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
